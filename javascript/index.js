@@ -165,3 +165,19 @@ makeBroccoli();
 
 // Bonus 2 - Promise all
 // ...
+const doBrussels = async ()=>{
+	const promiseArr=[]
+	for(let i = 0; i<brusselsSprouts.length ; i++){
+		promiseArr.push(obtainInstruction("brusselsSprouts", i))
+	}
+	Promise.all(promiseArr)
+	.then((promiseAllResponse)=>{
+		promiseAllResponse.forEach((onePromise)=>{
+			document.querySelector('#brusselsSprouts').innerHTML += `<li>${onePromise}</li>`;
+		})
+		document.querySelector('#brusselsSproutsImg').removeAttribute('hidden');
+	})
+	.catch((error)=>{console.log(error);})
+};
+
+doBrussels()
